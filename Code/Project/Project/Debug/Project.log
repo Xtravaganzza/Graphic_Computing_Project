@@ -1,0 +1,9 @@
+﻿  Main.cpp
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(417,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(740,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(741,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(745,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(746,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(748,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(749,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  Project.vcxproj -> D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Debug\Project.exe

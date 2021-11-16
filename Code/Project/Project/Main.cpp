@@ -26,8 +26,8 @@
 #include "Texture.h"
 
 // Function prototypes
-void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
-void MouseCallback(GLFWwindow *window, double xPos, double yPos);
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void MouseCallback(GLFWwindow* window, double xPos, double yPos);
 void DoMovement();
 void animacion();
 
@@ -56,7 +56,7 @@ GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
 // Keyframes
-float posX =PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq, rotRodDer, rotBrazoDer, rotBrazoIzq; //Variables KeyFrames
+float posX = PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq, rotRodDer, rotBrazoDer, rotBrazoIzq; //Variables KeyFrames
 
 #define MAX_FRAMES 9
 int i_max_steps = 190;
@@ -104,15 +104,15 @@ void saveFrame(void)
 {
 
 	printf("frameindex %d\n", FrameIndex);
-	
+
 	KeyFrame[FrameIndex].posX = posX;
 	KeyFrame[FrameIndex].posY = posY;
 	KeyFrame[FrameIndex].posZ = posZ;
-	
+
 	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
 	KeyFrame[FrameIndex].rotRodDer = rotRodDer; //Variable KeyFrame
 	KeyFrame[FrameIndex].rotBrazoDer = rotBrazoDer;
-	KeyFrame[FrameIndex].rotBrazoIzq = rotBrazoIzq; 
+	KeyFrame[FrameIndex].rotBrazoIzq = rotBrazoIzq;
 
 	FrameIndex++;
 }
@@ -135,11 +135,11 @@ void interpolation(void)
 	KeyFrame[playIndex].incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
 	KeyFrame[playIndex].incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
 	KeyFrame[playIndex].incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
-	
+
 	KeyFrame[playIndex].rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
 	KeyFrame[playIndex].rotInc2 = (KeyFrame[playIndex + 1].rotRodDer - KeyFrame[playIndex].rotRodDer) / i_max_steps; //Variable KeyFrames
-	KeyFrame[playIndex].rotInc3 = (KeyFrame[playIndex + 1].rotBrazoDer - KeyFrame[playIndex].rotBrazoDer) / i_max_steps; 
-	KeyFrame[playIndex].rotInc4 = (KeyFrame[playIndex + 1].rotBrazoIzq - KeyFrame[playIndex].rotBrazoIzq) / i_max_steps; 
+	KeyFrame[playIndex].rotInc3 = (KeyFrame[playIndex + 1].rotBrazoDer - KeyFrame[playIndex].rotBrazoDer) / i_max_steps;
+	KeyFrame[playIndex].rotInc4 = (KeyFrame[playIndex + 1].rotBrazoIzq - KeyFrame[playIndex].rotBrazoIzq) / i_max_steps;
 }
 
 
@@ -193,8 +193,8 @@ int main()
 
 	// OpenGL options
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
 	Shader lightingShader("Shaders/lighting.vs", "Shaders/lighting.frag");
@@ -202,20 +202,20 @@ int main()
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
 	Model Casa((char*)"Models/House/casa.obj");
-	Model tmpObj((char*)"Models/tmp/tmp.obj");
+	Model tmpObj((char*)"Models/House/ventanas.obj");
 	// Build and compile our shader program
 
 
 	//Inicialización de KeyFrames
-	
-	for(int i=0; i<MAX_FRAMES; i++)
+
+	for (int i = 0; i < MAX_FRAMES; i++)
 	{
 		KeyFrame[i].posX = 0;
 		KeyFrame[i].incX = 0;
 		KeyFrame[i].incY = 0;
 		KeyFrame[i].incZ = 0;
 		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].rotRodDer  = 0;
+		KeyFrame[i].rotRodDer = 0;
 		KeyFrame[i].rotInc = 0;
 		KeyFrame[i].rotInc2 = 0; //2 Variables KeyFrames
 
@@ -363,13 +363,13 @@ int main()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// Position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 	// Normals attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
 	// Texture Coordinate attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(6 * sizeof(GLfloat)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2);
 	glBindVertexArray(0);
 
@@ -380,7 +380,7 @@ int main()
 	// We only need to bind to the VBO (to link it with glVertexAttribPointer), no need to fill it; the VBO's data already contains all we need.
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	// Set the vertex attributes (only position data for the lamp))
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0); // Note that we skip over the other data in our buffer object (we don't need the normals/textures, only positions).
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0); // Note that we skip over the other data in our buffer object (we don't need the normals/textures, only positions).
 	glEnableVertexAttribArray(0);
 	glBindVertexArray(0);
 
@@ -388,22 +388,15 @@ int main()
 	//SkyBox
 	GLuint skyboxVBO, skyboxVAO;
 	glGenVertexArrays(1, &skyboxVAO);
-	glGenBuffers(1,&skyboxVBO);
+	glGenBuffers(1, &skyboxVBO);
 	glBindVertexArray(skyboxVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices),&skyboxVertices,GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT,GL_FALSE, 3 * sizeof(GLfloat), (GLvoid *)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 
 	// Load textures
 	vector<const GLchar*> faces;
-	//faces.push_back("SkyBox/right.tga");
-	//faces.push_back("SkyBox/left.tga");
-	//faces.push_back("SkyBox/top.tga");
-	//faces.push_back("SkyBox/bottom.tga");
-	//faces.push_back("SkyBox/back.tga");
-	//faces.push_back("SkyBox/front.tga");
-
 	faces.push_back("SkyBox/Winter/winter-skyboxes/IceLake/posx.jpg");
 	faces.push_back("SkyBox/Winter/winter-skyboxes/IceLake/negx.jpg");
 	faces.push_back("SkyBox/Winter/winter-skyboxes/IceLake/posy.jpg");
@@ -411,7 +404,7 @@ int main()
 	faces.push_back("SkyBox/Winter/winter-skyboxes/IceLake/posz.jpg");
 	faces.push_back("SkyBox/Winter/winter-skyboxes/IceLake/negz.jpg");
 
-	
+
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
 
 	glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
@@ -521,7 +514,7 @@ int main()
 		// Pass the matrices to the shader
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
+		glBindVertexArray(VAO);
 		// Bind diffuse map
 		//glBindTexture(GL_TEXTURE_2D, texture1);*/
 
@@ -530,20 +523,25 @@ int main()
 		//glBindTexture(GL_TEXTURE_2D, texture2);
 
 
-		glBindVertexArray(VAO);
-		glm::mat4 tmp = glm::mat4(1.0f); //Temp
+		glm::mat4 model(1);
 
-
-
+			
+		
 		//Carga de modelo 
 		//Personaje
 		view = camera.GetViewMatrix();
-		glm::mat4 model(1);
-		tmp = model = glm::translate(model, glm::vec3(0, 0, 0));
-		model = glm::translate(model,glm::vec3(posX,posY,posZ));
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Casa.Draw(lightingShader);
+
+
+
+		model = glm::mat4(1);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		tmpObj.Draw(lightingShader);
+		glEnable(GL_BLEND);
 		////Pierna Izq
 		//view = camera.GetViewMatrix();
 		//model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
@@ -580,14 +578,14 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// Draw the light object (using light's vertex attributes)
 		glBindVertexArray(lightVAO);
-		for (GLuint i = 0; i < 4; i++)
-		{
-			model = glm::mat4(1);
-			model = glm::translate(model, pointLightPositions[i]);
-			model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
-			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-		}
+		//for (GLuint i = 0; i < 4; i++)
+		//{
+		//	model = glm::mat4(1);
+		//	model = glm::translate(model, pointLightPositions[i]);
+		//	model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
+		//	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//	glDrawArrays(GL_TRIANGLES, 0, 36);
+		//}
 		glBindVertexArray(0);
 
 
@@ -635,47 +633,47 @@ int main()
 void animacion()
 {
 
-		//Movimiento del personaje
+	//Movimiento del personaje
 
-		if (play)
+	if (play)
+	{
+		if (i_curr_steps >= i_max_steps) //end of animation between frames?
 		{
-			if (i_curr_steps >= i_max_steps) //end of animation between frames?
+			playIndex++;
+			if (playIndex > FrameIndex - 2)	//end of total animation?
 			{
-				playIndex++;
-				if (playIndex>FrameIndex - 2)	//end of total animation?
-				{
-					printf("termina anim\n");
-					playIndex = 0;
-					play = false;
-				}
-				else //Next frame interpolations
-				{
-					i_curr_steps = 0; //Reset counter
-									  //Interpolation
-					interpolation();
-				}
+				printf("termina anim\n");
+				playIndex = 0;
+				play = false;
 			}
-			else
+			else //Next frame interpolations
 			{
-				//Draw animation
-				posX += KeyFrame[playIndex].incX;
-				posY += KeyFrame[playIndex].incY;
-				posZ += KeyFrame[playIndex].incZ;
-
-				rotRodIzq += KeyFrame[playIndex].rotInc;
-				rotRodDer += KeyFrame[playIndex].rotInc2; //Variable KeyFrames.
-				rotBrazoDer += KeyFrame[playIndex].rotInc3;
-				rotBrazoIzq += KeyFrame[playIndex].rotInc4;
-
-				i_curr_steps++;
+				i_curr_steps = 0; //Reset counter
+								  //Interpolation
+				interpolation();
 			}
-
 		}
+		else
+		{
+			//Draw animation
+			posX += KeyFrame[playIndex].incX;
+			posY += KeyFrame[playIndex].incY;
+			posZ += KeyFrame[playIndex].incZ;
+
+			rotRodIzq += KeyFrame[playIndex].rotInc;
+			rotRodDer += KeyFrame[playIndex].rotInc2; //Variable KeyFrames.
+			rotBrazoDer += KeyFrame[playIndex].rotInc3;
+			rotBrazoIzq += KeyFrame[playIndex].rotInc4;
+
+			i_curr_steps++;
+		}
+
 	}
+}
 
 
 // Is called whenever a key is pressed/released via GLFW
-void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (keys[GLFW_KEY_L])
 	{
@@ -699,7 +697,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 	if (keys[GLFW_KEY_K])
 	{
-		if (FrameIndex<MAX_FRAMES)
+		if (FrameIndex < MAX_FRAMES)
 		{
 			saveFrame();
 		}
@@ -734,7 +732,7 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 	}
 }
 
-void MouseCallback(GLFWwindow *window, double xPos, double yPos)
+void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 {
 
 	if (firstMouse)
@@ -766,13 +764,13 @@ void DoMovement()
 
 	if (keys[GLFW_KEY_2])
 	{
-		if (rotRodIzq<80.0f)
+		if (rotRodIzq < 80.0f)
 			rotRodIzq += 1.0f;
 	}
 
 	if (keys[GLFW_KEY_3])
 	{
-		if (rotRodIzq>-45)
+		if (rotRodIzq > -45)
 			rotRodIzq -= 1.0f;
 	}
 
@@ -840,19 +838,19 @@ void DoMovement()
 	// Camera controls
 	if (keys[GLFW_KEY_W])
 	{
-		camera.ProcessKeyboard(FORWARD, deltaTime+1);
+		camera.ProcessKeyboard(FORWARD, deltaTime + 1);
 	}
 	if (keys[GLFW_KEY_S])
 	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime+1);
+		camera.ProcessKeyboard(BACKWARD, deltaTime + 1);
 	}
 	if (keys[GLFW_KEY_A])
 	{
-		camera.ProcessKeyboard(LEFT, deltaTime+1);
+		camera.ProcessKeyboard(LEFT, deltaTime + 1);
 	}
 	if (keys[GLFW_KEY_D])
 	{
-		camera.ProcessKeyboard(RIGHT, deltaTime+1);
+		camera.ProcessKeyboard(RIGHT, deltaTime + 1);
 	}
 
 
