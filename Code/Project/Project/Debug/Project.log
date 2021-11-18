@@ -1,6 +1,12 @@
-﻿LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-soil2-debug.lib(etc1_utils.obj) : warning LNK4099: PDB '' was not found with 'soil2-debug.lib(etc1_utils.obj)' or at ''; linking object as if no debug info
+﻿  Main.cpp
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(419,24): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(752,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(753,11): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(757,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(758,18): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(760,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Project\Main.cpp(761,10): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
 soil2-debug.lib(image_DXT.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_DXT.obj)' or at 'D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Debug\soil2-debug.pdb'; linking object as if no debug info
 soil2-debug.lib(image_helper.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_helper.obj)' or at 'D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Debug\soil2-debug.pdb'; linking object as if no debug info
-soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(SOIL2.obj)' or at 'D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Debug\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB '' was not found with 'soil2-debug.lib(SOIL2.obj)' or at ''; linking object as if no debug info
   Project.vcxproj -> D:\Documentos\Github\Graphic_Computing_Project\Code\Project\Debug\Project.exe

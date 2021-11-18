@@ -201,8 +201,10 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
-	Model Casa((char*)"Models/Casa/casa.obj");
-	Model tmpObj((char*)"Models/Casa/ventanas.obj");
+	Model Casa((char*)"Models/House/house.obj");
+	Model Windows((char*)"Models/Windows/windows.obj");
+	Model MailBox((char*)"Models/Mailbox/mailbox.obj");
+	Model Sled((char*)"Models/Sled/sled.obj");
 	// Build and compile our shader program
 
 
@@ -541,8 +543,19 @@ int main()
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		tmpObj.Draw(lightingShader);
+		Windows.Draw(lightingShader);
 		glDisable(GL_BLEND);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		MailBox.Draw(lightingShader);
+
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Sled.Draw(lightingShader);
+
+
 		////Pierna Izq
 		//view = camera.GetViewMatrix();
 		//model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
